@@ -635,6 +635,9 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 						<cfset var fileDir = variables.configBean.getValue('filedir') & '/' & filePoolID />
 						<cfset var assetDir = variables.configBean.getValue('assetdir') & '/' & filePoolID />
 						
+						<cfif not hasFilesZip><cfzip file="#zipPath#" action="unzip" overwrite="false" destination="#fileDir#/" entrypath="cache"></cfif>
+						<cfif not hasAssetsZip><cfzip file="#zipPath#" action="unzip" overwrite="false" destination="#fileDir#/" entrypath="assets"></cfif>
+						<!---
 						<cfzip file="#zipPath#" action="list" name="rsfiles">
 
 						<cfloop query="rsfiles">
@@ -652,6 +655,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 								<cfzip file="#zipPath#" action="unzip" overwrite="false" destination="#assetDir#" entrypath="#rsfiles.directory#" filter="#listLast(filename,'/')#">
 							</cfif>
 						</cfloop>
+						---> 
 					</cfif>
 				</cfif>
 				<cfif hasAssetsZip>
